@@ -43,7 +43,6 @@ public class SaveManager : MonoBehaviour
     public class SaveFileData
     {
         public List<HierarchyState> objects = new List<HierarchyState>();
-        public List<string> deletedObjects = new List<string>();   // 🔥 NUEVO
     }
 
     SaveFileData currentData = new SaveFileData();
@@ -64,16 +63,7 @@ public class SaveManager : MonoBehaviour
 
         Debug.Log("Juego guardado con jerarquías.");
     }
-
-    public void RegistrarObjetoEliminado(string id)
-    {
-        if (!currentData.deletedObjects.Contains(id))
-        {
-            currentData.deletedObjects.Add(id);
-            Debug.Log("Registrado objeto eliminado: " + id);
-        }
-    }
-
+    
     public void LoadGame()
     {
         if (!PlayerPrefs.HasKey("SaveFile"))
@@ -89,17 +79,6 @@ public class SaveManager : MonoBehaviour
 
         Debug.Log("Objetos en escena: " + mapScene.Count);
         Debug.Log("Objetos en archivo: " + currentData.objects.Count);
-
-        // 🔥🔥🔥 PRIMERO: eliminar objetos que estaban destruidos
-        foreach (string deletedID in currentData.deletedObjects)
-        {
-            if (mapScene.ContainsKey(deletedID))
-            {
-                Debug.Log("Destruyendo objeto previamente eliminado: " + deletedID);
-                Destroy(mapScene[deletedID].gameObject);
-                mapScene.Remove(deletedID);
-            }
-        }
 
         // 🔥🔥🔥 DESPUÉS: cargar posiciones/rotaciones/escala jerárquicas
         foreach (var entry in currentData.objects)

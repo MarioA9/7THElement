@@ -18,7 +18,8 @@ public class ObjectState
 [System.Serializable]
 public class HierarchyState
 {
-    public string id; // ID único del objeto raíz
+    public string id;
+    public bool destroyed; // 🔥 NUEVO
     public List<ObjectState> states = new List<ObjectState>();
 }
 
