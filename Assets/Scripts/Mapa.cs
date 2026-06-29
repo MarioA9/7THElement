@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.Serialization;
-
 public class Mapa : MonoBehaviour
 {
-    public GameObject mapaActivate; // Objeto que se activará/desactivará
+    public GameObject mapaActivate;
+    // Objeto que se activará/desactivará 
 
     void Start()
     {
-        // Asegura que comience desactivado
+        // Asegura que comience desactivado 
         if (mapaActivate != null)
             mapaActivate.SetActive(false);
     }

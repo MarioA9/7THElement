@@ -878,7 +878,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_24
+      name: Avoid1
       rect:
         serializedVersion: 2
         x: 30
@@ -900,7 +900,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_25
+      name: Avoid2
       rect:
         serializedVersion: 2
         x: 128
@@ -922,7 +922,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_26
+      name: Avoid3
       rect:
         serializedVersion: 2
         x: 250
@@ -944,7 +944,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_27
+      name: Avoid4
       rect:
         serializedVersion: 2
         x: 359
@@ -966,7 +966,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_28
+      name: Avoid5
       rect:
         serializedVersion: 2
         x: 468
@@ -988,7 +988,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_29
+      name: Avoid6
       rect:
         serializedVersion: 2
         x: 581
@@ -1010,7 +1010,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_30
+      name: Avoid7
       rect:
         serializedVersion: 2
         x: 688
@@ -1032,7 +1032,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_31
+      name: Avoid8
       rect:
         serializedVersion: 2
         x: 799
@@ -2131,6 +2131,14 @@ TextureImporter:
       Attack6: -3551967274139903119
       Attack7: 8113700493152974639
       Attack8: 4819963251569588764
+      Avoid1: 8871532568298537163
+      Avoid2: -3522477055284954234
+      Avoid3: -2611168455720188827
+      Avoid4: -747095956079510842
+      Avoid5: -1150986314314233284
+      Avoid6: -1549151736782420611
+      Avoid7: 4425439098077930050
+      Avoid8: -7411917632262290953
       Elemental1: -5809692940870928453
       Elemental2: 2351414161340878556
       Elemental3: 6285642079362487989
@@ -2179,14 +2187,6 @@ TextureImporter:
       player_21: -2812111548000859311
       player_22: 6581797731665330364
       player_23: -735806604810280217
-      player_24: 8871532568298537163
-      player_25: -3522477055284954234
-      player_26: -2611168455720188827
-      player_27: -747095956079510842
-      player_28: -1150986314314233284
-      player_29: -1549151736782420611
-      player_30: 4425439098077930050
-      player_31: -7411917632262290953
       player_56: -7658368728387630918
       player_57: -3142433877728364584
       player_58: 978835004439848441

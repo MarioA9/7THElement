@@ -16,6 +16,15 @@ TagManager:
   - Ultimate
   - Enemy
   - AttackEnemy
+  - Normal
+  - Nieve
+  - Lava
+  - Puente
+  - AttackStrongEnemy
+  - Zona_Nieve
+  - Zona_Lava
+  - Zona_Desertica
+  - Zona_Normal
   layers:
   - Default
   - TransparentFX

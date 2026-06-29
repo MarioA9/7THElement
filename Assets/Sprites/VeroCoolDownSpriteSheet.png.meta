@@ -1,0 +1,270 @@
+fileFormatVersion: 2
+guid: a401f4b00b3ce6f4c92dd6134acbe2ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6856566190465877019
+    second: VeroCoolDownSpriteSheet_0
+  - first:
+      213: 6513791688316525945
+    second: VeroCoolDownSpriteSheet_1
+  - first:
+      213: 8540649992081761081
+    second: VeroCoolDownSpriteSheet_2
+  - first:
+      213: 76872621171180283
+    second: VeroCoolDownSpriteSheet_3
+  - first:
+      213: 4668073007625210772
+    second: VeroCoolDownSpriteSheet_4
+  - first:
+      213: 6330808259158457079
+    second: VeroCoolDownSpriteSheet_5
+  - first:
+      213: -8546874841426672323
+    second: VeroCoolDownSpriteSheet_6
+  - first:
+      213: -4513437442327523205
+    second: VeroCoolDownSpriteSheet_7
+  - first:
+      213: -6249995222441111143
+    second: VeroCoolDownSpriteSheet_8
+  - first:
+      213: 7246232460006380391
+    second: VeroCoolDownSpriteSheet_9
+  - first:
+      213: -6120895744656732078
+    second: VeroCoolDownSpriteSheet_10
+  - first:
+      213: -2643423373753844044
+    second: VeroCoolDownSpriteSheet_11
+  - first:
+      213: -4121661307531869599
+    second: VeroCoolDownSpriteSheet_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VeroCoolDownSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 18
+        width: 254
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b140ca16f9a672f50800000000000000
+      internalID: 6856566190465877019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeroCoolDownSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 19
+        width: 251
+        height: 292
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933e9f0eaeb768670800000000000000
+      internalID: 8540649992081761081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeroCoolDownSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 19
+        width: 243
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49b071dfaa358c040800000000000000
+      internalID: 4668073007625210772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VeroCoolDownSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 19
+        width: 241
+        height: 291
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fabf34d19c8bd750800000000000000
+      internalID: 6330808259158457079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: e72f39a89fa240f49848804db4848b8e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      VeroCoolDownSpriteSheet_0: 6856566190465877019
+      VeroCoolDownSpriteSheet_1: 6513791688316525945
+      VeroCoolDownSpriteSheet_10: -6120895744656732078
+      VeroCoolDownSpriteSheet_11: -2643423373753844044
+      VeroCoolDownSpriteSheet_12: -4121661307531869599
+      VeroCoolDownSpriteSheet_2: 8540649992081761081
+      VeroCoolDownSpriteSheet_3: 76872621171180283
+      VeroCoolDownSpriteSheet_4: 4668073007625210772
+      VeroCoolDownSpriteSheet_5: 6330808259158457079
+      VeroCoolDownSpriteSheet_6: -8546874841426672323
+      VeroCoolDownSpriteSheet_7: -4513437442327523205
+      VeroCoolDownSpriteSheet_8: -6249995222441111143
+      VeroCoolDownSpriteSheet_9: 7246232460006380391
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

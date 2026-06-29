@@ -43,12 +43,23 @@ public class Dialogo_Manager : MonoBehaviour
 
     private Dialogo[] dialogosActuales;
 
+    [Header("UI de decisiones")]
+    public GameObject panelDecision;
+    public Button botonContinuar;
+    public Button botonGameOver;
+
+    [Header("Panel de Game Over")]
+    public GameObject panelGameOver;
+
     [System.Serializable]
     public class Dialogo
     {
         [TextArea] public string texto;
         public Sprite imagen;
         public bool usarImagen;
+
+        [Header("Decisión al final de este diálogo")]
+        public bool usarDecision;
     }
 
     private int index = 0;
@@ -60,9 +71,31 @@ public class Dialogo_Manager : MonoBehaviour
     private float velocidadOriginal;
     private bool bloqueoDialogo = false;
 
-    // ==========================================================
-    // UNITY
-    // ==========================================================
+    [Header("Sistema de Llave / Puerta")]
+    public bool usarSistemaLlave = false;
+
+    [Header("Diálogo si tiene llave")]
+    public Dialogo[] dialogoConLlave;
+
+    [Header("Diálogo si NO tiene llave")]
+    public Dialogo[] dialogoSinLlave;
+
+    [Header("Objeto que se activará al abrir")]
+    public GameObject objetoActivar;
+
+    [Header("Probabilidad de abrir sin llave (0-1)")]
+    [Range(0f, 1f)]
+    public float probabilidadAbrir = 0.3f;
+
+    [Header("Daño por intentar sin llave")]
+    public float danoIntento = 10f;
+
+    [Header("Botones sistema llave")]
+    public Button botonIntentar;
+    public Button botonRendirse;
+
+    private bool usandoSistemaLlave = false;
+
     void Start()
     {
         panelDialogo.SetActive(false);
@@ -73,6 +106,20 @@ public class Dialogo_Manager : MonoBehaviour
 
         if (objetoElemental != null)
             objetoElemental.SetActive(false);
+
+        if (panelDecision != null)
+            panelDecision.SetActive(false);
+
+        if (panelGameOver != null)
+            panelGameOver.SetActive(false);
+
+        botonContinuar.onClick.AddListener(OpcionContinuar);
+        botonGameOver.onClick.AddListener(OpcionGameOver);
+
+        botonIntentar.onClick.AddListener(IntentarAbrir);
+        botonRendirse.onClick.AddListener(Rendirse);
+
+        StartCoroutine(CheckPlayerInside());
     }
 
     void Update()
@@ -177,23 +224,38 @@ public class Dialogo_Manager : MonoBehaviour
     {
         if (player == null) return;
 
-        // --- Si VOZ = true ---
-        if (player.Voz)
+        usandoSistemaLlave = usarSistemaLlave;
+
+        // ================================
+        // SISTEMA DE LLAVE
+        // ================================
+        if (usandoSistemaLlave)
         {
-            // Si ya fue activado antes → usar el otro conjunto
-            if (dialogoYaActivado && dialogosVozOn_Repetido.Length > 0)
+            if (player.Llave)
             {
-                dialogosActuales = dialogosVozOn_Repetido;
+                dialogosActuales = dialogoConLlave;
             }
             else
             {
-                dialogosActuales = dialogosVozOn;
+                dialogosActuales = dialogoSinLlave;
             }
         }
         else
         {
-            // --- Si VOZ = false ---
-            dialogosActuales = dialogosVozOff;
+            // ================================
+            // SISTEMA NORMAL
+            // ================================
+            if (player.Voz)
+            {
+                if (dialogoYaActivado && dialogosVozOn_Repetido.Length > 0)
+                    dialogosActuales = dialogosVozOn_Repetido;
+                else
+                    dialogosActuales = dialogosVozOn;
+            }
+            else
+            {
+                dialogosActuales = dialogosVozOff;
+            }
         }
 
         if (dialogosActuales == null || dialogosActuales.Length == 0)
@@ -263,6 +325,13 @@ public class Dialogo_Manager : MonoBehaviour
     // ==========================================================
     void SiguienteDialogo()
     {
+        // Si el diálogo actual tiene decisión
+        if (dialogosActuales[index].usarDecision)
+        {
+            MostrarDecision();
+            return;
+        }
+
         index++;
 
         if (index >= dialogosActuales.Length)
@@ -274,18 +343,96 @@ public class Dialogo_Manager : MonoBehaviour
         MostrarDialogoActual();
     }
 
-    // ==========================================================
-    // FINALIZAR
-    // ==========================================================
-    void FinalizarDialogo()
+    void MostrarDecision()
     {
+        if (panelDecision != null)
+            panelDecision.SetActive(true);
+
+        // Si usa sistema llave y NO tiene llave
+        if (usandoSistemaLlave && !player.Llave)
+        {
+            botonContinuar.gameObject.SetActive(false);
+            botonGameOver.gameObject.SetActive(false);
+
+            botonIntentar.gameObject.SetActive(true);
+            botonRendirse.gameObject.SetActive(true);
+        }
+        else
+        {
+            botonContinuar.gameObject.SetActive(true);
+            botonGameOver.gameObject.SetActive(true);
+
+            botonIntentar.gameObject.SetActive(false);
+            botonRendirse.gameObject.SetActive(false);
+        }
+    }
+
+    void OpcionContinuar()
+    {
+        panelDecision.SetActive(false);
+
+        index++;
+
+        if (index >= dialogosActuales.Length)
+        {
+            FinalizarDialogo();
+            return;
+        }
+
+        MostrarDialogoActual();
+    }
+
+    void OpcionGameOver()
+    {
+        panelDecision.SetActive(false);
+
+        if (panelGameOver != null)
+            panelGameOver.SetActive(true);
+
+        FinalizarDialogo();
+    }
+
+    void IntentarAbrir()
+    {
+        panelDecision.SetActive(false);
+
+        // Quitar vida
+        if (player != null)
+            player.TakeDamage(danoIntento);
+
+        float rand = Random.value;
+
+        if (rand <= probabilidadAbrir)
+        {
+            Debug.Log("PUERTA ABIERTA");
+
+            player.Llave = true; // Simula que logró abrir
+
+            index++;
+
+            if (index >= dialogosActuales.Length)
+            {
+                FinalizarDialogo();
+                return;
+            }
+
+            MostrarDialogoActual();
+        }
+        else
+        {
+            Debug.Log("FALLÓ");
+
+            // Vuelve a mostrar decisión
+            MostrarDecision();
+        }
+    }
+
+    void Rendirse()
+    {
+        panelDecision.SetActive(false);
+
         panelDialogo.SetActive(false);
 
-        // Guardar que ya se activó un diálogo VOZ = TRUE
-        if (player.Voz)
-            dialogoYaActivado = true;
-
-        // Restaurar control del jugador
         if (player != null)
         {
             player.enabled = true;
@@ -293,10 +440,62 @@ public class Dialogo_Manager : MonoBehaviour
             bloqueoDialogo = false;
         }
 
-        // Destruir solo si no está marcado "noDestruirAlTerminar"
+        // NO destruir → puede volver a interactuar
+    }
+
+    // ==========================================================
+    // FINALIZAR
+    // ==========================================================
+    void FinalizarDialogo()
+    {
+        panelDialogo.SetActive(false);
+
+        if (player.Voz)
+            dialogoYaActivado = true;
+
+        if (player != null)
+        {
+            player.enabled = true;
+            player.moveSpeed = velocidadOriginal;
+            bloqueoDialogo = false;
+        }
+
+        // ================================
+        // SI ES SISTEMA LLAVE Y SE ABRIÓ
+        // ================================
+        if (usandoSistemaLlave && player.Llave)
+        {
+            // Activar objeto de la escena
+            if (objetoActivar != null)
+            {
+                objetoActivar.SetActive(true);
+            }
+
+            // destruir la puerta / trigger
+            Destroy(gameObject);
+            return;
+        }
+
+        // NORMAL
         if (!noDestruirAlTerminar)
         {
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator CheckPlayerInside()
+    {
+        yield return null;
+
+        Collider2D trigger = GetComponent<Collider2D>();
+        Collider2D playerCol = FindObjectOfType<Player>().GetComponent<Collider2D>();
+
+        if (trigger.IsTouching(playerCol))
+        {
+            jugadorDentro = true;
+
+            if (activarAutomatico)
+                IniciarDialogoSegunVozYEstados();
         }
     }
 }

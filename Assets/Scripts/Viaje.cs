@@ -1,20 +1,21 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Viaje : MonoBehaviour
 {
     [Header("Referencias")]
-    public GameObject textoUI;      // Texto que aparece al estar dentro
-    public GameObject pantallaCarga; // Objeto que se activa 5 segundos
-    public Transform puntoDestino;  // Lugar al que se teletransporta el jugador
+    public GameObject textoUI;
+    public GameObject pantallaCarga;
+    public Transform puntoDestino;
 
     private bool jugadorDentro = false;
+    private bool viajando = false;
+
     private GameObject jugador;
+    private Rigidbody2D jugadorRB;
 
     void Start()
     {
-        // Asegura que inicien desactivados
         if (textoUI != null)
             textoUI.SetActive(false);
 
@@ -24,7 +25,7 @@ public class Viaje : MonoBehaviour
 
     void Update()
     {
-        if (jugadorDentro && Input.GetKeyDown(KeyCode.F))
+        if (jugadorDentro && !viajando && Input.GetKeyDown(KeyCode.F))
         {
             StartCoroutine(Viajar());
         }
@@ -36,6 +37,7 @@ public class Viaje : MonoBehaviour
         {
             jugadorDentro = true;
             jugador = other.gameObject;
+            jugadorRB = jugador.GetComponent<Rigidbody2D>();
 
             if (textoUI != null)
                 textoUI.SetActive(true);
@@ -47,7 +49,6 @@ public class Viaje : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             jugadorDentro = false;
-            jugador = null;
 
             if (textoUI != null)
                 textoUI.SetActive(false);
@@ -56,21 +57,26 @@ public class Viaje : MonoBehaviour
 
     IEnumerator Viajar()
     {
-        // Activa el objeto especial
+        viajando = true;
+
         if (pantallaCarga != null)
             pantallaCarga.SetActive(true);
 
-        // Teletransporta al jugador
+        yield return new WaitForSeconds(0.1f);
+
         if (jugador != null && puntoDestino != null)
         {
-            jugador.transform.position = puntoDestino.position;
+            if (jugadorRB != null)
+                jugadorRB.position = puntoDestino.position;
+            else
+                jugador.transform.position = puntoDestino.position;
         }
 
-        // Espera 5 segundos
         yield return new WaitForSeconds(5f);
 
-        // Desactiva el objeto nuevamente
         if (pantallaCarga != null)
             pantallaCarga.SetActive(false);
+
+        viajando = false;
     }
 }
